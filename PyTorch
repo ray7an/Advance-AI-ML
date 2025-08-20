@@ -1,0 +1,14 @@
+import torch
+import torch.nn as nn
+X = torch.tensor([[1.], [2.], [3.]])
+y = torch.tensor([[2.], [4.], [6.]])
+model = nn.Linear(1, 1)
+loss_fn = nn.MSELoss()
+optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
+for _ in range(50):
+    pred = model(X)
+    loss = loss_fn(pred, y)
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+print(model(torch.tensor([[4.]])))
