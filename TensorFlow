@@ -1,0 +1,11 @@
+import tensorflow as tf
+from tensorflow.keras import layers
+model = tf.keras.Sequential([
+    layers.Dense(10, activation='relu'),
+    layers.Dense(1)
+])
+model.compile(optimizer='adam', loss='mse')
+X = tf.constant([[1.0], [2.0], [3.0]])
+y = tf.constant([[2.0], [4.0], [6.0]])
+model.fit(X, y, epochs=10, verbose=0)
+print("Prediction for 4.0:", model.predict([[4.0]])[0][0])
